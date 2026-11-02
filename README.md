@@ -9,6 +9,19 @@
 
 [Termux](https://termux.dev) is an Android terminal application and Linux environment.
 
+> **Fork note — `extra-keys` uses tekl, not JSON.**
+> This fork replaces the JSON syntax of the `extra-keys` property with
+> [tekl](https://github.com/poisongod/termux-extrakey-lang), a small layout DSL:
+>
+> ```properties
+> extra-keys = ESC.DRAWER "`"."~" "["."{" "]"."}" APOSTROPHE.QUOTE UP.HOME "="."+" KEYBOARD; TAB."^" CTRL ALT BACKSLASH."|" LEFT."<" DOWN.END RIGHT.">" ENTER.PASTE
+> ```
+>
+> `;` separates rows, `KEY.POPUP` adds a swipe-up key, `MODIFIER(KEY)` is a macro and
+> `KEY:Label` renames the button. Existing JSON configs must be rewritten; on a parse error
+> the app shows the line/column and falls back to the built-in layout. The matching CLI
+> (v0.4.0+) writes this syntax: `tekl reload ~/.termux/termux.tekl`.
+
 Note that this repository is for the app itself (the user interface and the terminal emulation). For the packages installable inside the app, see [termux/termux-packages](https://github.com/termux/termux-packages).
 
 Quick how-to about Termux package management is available at [Package Management](https://github.com/termux/termux-packages/wiki/Package-Management). It also has info on how to fix **`repository is under maintenance or down`** errors when running `apt` or `pkg` commands.
