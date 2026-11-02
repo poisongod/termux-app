@@ -86,8 +86,8 @@ public final class ExtraKeysView extends GridLayout {
          *
          * @param view The view that was clicked.
          * @param buttonInfo The {@link ExtraKeyButton} for the button that was clicked.
-         *                   The button may be a {@link ExtraKeyButton#KEY_MACRO} set which can be
-         *                   checked with a call to {@link ExtraKeyButton#isMacro()}.
+         *                   The button may be a macro set which can be checked with a call to
+         *                   {@link ExtraKeyButton#isMacro()}.
          * @param button The {@link MaterialButton} that was clicked.
          */
         void onExtraKeyButtonClick(View view, ExtraKeyButton buttonInfo, MaterialButton button);

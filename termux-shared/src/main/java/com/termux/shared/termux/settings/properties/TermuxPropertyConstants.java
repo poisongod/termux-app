@@ -323,10 +323,19 @@ public final class TermuxPropertyConstants {
 
 
 
-    /** Defines the key for extra keys */
+    /**
+     * Defines the key for extra keys.
+     *
+     * <p>The value is tekl source, not JSON. Semicolons separate rows; {@code #} starts a comment.
+     * Example single row: {@code ESC TAB CTRL ALT "-"."|" DOWN UP}.</p>
+     */
     public static final String KEY_EXTRA_KEYS =  "extra-keys"; // Default: "extra-keys"
-    //public static final String DEFAULT_IVALUE_EXTRA_KEYS = "[[ESC, TAB, CTRL, ALT, {key: '-', popup: '|'}, DOWN, UP]]"; // Single row
-    public static final String DEFAULT_IVALUE_EXTRA_KEYS = "[['ESC','/',{key: '-', popup: '|'},'HOME','UP','END','PGUP'], ['TAB','CTRL','ALT','LEFT','DOWN','RIGHT','PGDN']]"; // Double row
+    /**
+     * Default layout: physical-keyboard inspired, inverted-T arrows on the right,
+     * ESC in the top-left corner.
+     */
+    public static final String DEFAULT_IVALUE_EXTRA_KEYS =
+        com.termux.shared.termux.extrakeys.tekl.TeklDefaults.DEFAULT_LAYOUT;
 
     /** Defines the key for extra keys style */
     public static final String KEY_EXTRA_KEYS_STYLE =  "extra-keys-style"; // Default: "extra-keys-style"
