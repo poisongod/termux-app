@@ -94,7 +94,12 @@ final class TeklTokenizer {
                 while (i < n && isDigit(src.charAt(i))) {
                     i++;
                 }
-                long value = Long.parseLong(src.substring(start, i));
+                long value;
+                try {
+                    value = Long.parseLong(src.substring(start, i));
+                } catch (NumberFormatException e) {
+                    throw new TeklException("number out of range", line, column);
+                }
                 tokens.add(TeklToken.ofNumber(value, line, column));
                 column += i - start;
                 continue;

@@ -19,7 +19,8 @@ import java.util.Set;
  *
  * <p>Comments start with {@code #} and run to the end of the line. {@code ;} terminates a row;
  * newlines are only formatting. Global property assignments ({@code height = 2}, {@code theme = ...})
- * are rejected here: the layout file only carries the key matrix.</p>
+ * are part of the language and are parsed for validity but ignored: the extra-keys matrix does not
+ * use them, and rejecting them would discard the whole keyboard over a harmless line.</p>
  */
 public final class TeklParser {
 
@@ -79,11 +80,10 @@ public final class TeklParser {
                     break;
                 case IDENT:
                     if (isGlobalKey(token.text)) {
-                        throw new TeklException(
-                            "global property '" + token.text + "' is not allowed in extra-keys",
-                            token.line, token.column);
+                        parseGlobal();
+                    } else {
+                        row.add(parseEntry());
                     }
-                    row.add(parseEntry());
                     break;
                 case LITERAL:
                     row.add(parseEntry());
@@ -110,6 +110,26 @@ public final class TeklParser {
         }
 
         return main;
+    }
+
+    /**
+     * G ::= "height" '=' NUMBER | "theme" '=' IDENT | "layout" '=' IDENT | "reload"
+     *
+     * <p>The value is validated exactly like the reference CLI parser, then discarded. Keeping the
+     * grammar identical means a file that {@code tekl check} accepts also loads in the app.</p>
+     */
+    private void parseGlobal() throws TeklException {
+        TeklToken keyToken = next();
+        String key = keyToken.text.toLowerCase(Locale.ROOT);
+        if ("reload".equals(key)) {
+            return;
+        }
+        expect(TeklToken.Kind.EQ);
+        if ("height".equals(key)) {
+            expect(TeklToken.Kind.NUMBER);
+        } else {
+            expect(TeklToken.Kind.IDENT);
+        }
     }
 
     /** A ::= N | S | A '(' A ')' | A ':' N */

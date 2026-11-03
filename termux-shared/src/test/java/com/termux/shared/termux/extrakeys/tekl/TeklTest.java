@@ -114,10 +114,23 @@ public class TeklTest {
     }
 
     @Test
-    public void rejectsGlobalPropertyInExtraKeys() {
-        TeklException e = assertThrows(TeklException.class,
-            () -> TeklParser.parse("height = 2\nESC"));
-        assertTrue(e.getMessage().contains("not allowed in extra-keys"));
+    public void ignoresGlobalProperties() throws TeklException {
+        TeklProgram program = TeklParser.parse("height = 2\ntheme = dark\nreload\nESC");
+        assertEquals(1, program.rows.size());
+        assertEquals("ESC", program.rows.get(0).get(0).key);
+    }
+
+    @Test
+    public void acceptsGlobalPropertyBetweenRows() throws TeklException {
+        TeklProgram program = TeklParser.parse("ESC; height = 2 TAB;");
+        assertEquals(2, program.rows.size());
+        assertEquals("TAB", program.rows.get(1).get(0).key);
+    }
+
+    @Test
+    public void rejectsInvalidGlobalProperty() {
+        assertThrows(TeklException.class, () -> TeklParser.parse("height = dark"));
+        assertThrows(TeklException.class, () -> TeklParser.parse("reload = true"));
     }
 
     // ── Compiler ────────────────────────────────────────────────────

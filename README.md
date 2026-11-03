@@ -22,8 +22,9 @@
 > `;` separates rows, `KEY.POPUP` adds a swipe-up key, `MODIFIER(KEY)` is a macro and
 > `KEY:Label` renames the button. The file is plain multi-line tekl: `#` comments and newlines are
 > allowed. If it is missing the built-in layout is used; an empty file hides the toolbar. On a parse
-> error the app shows the line/column and falls back to the built-in layout. The `extra-keys`
-> property no longer exists. The matching CLI (v0.5.0+) writes this file:
+> error the app shows the line/column and falls back to the built-in layout. Global settings
+> (`height = 40`, `theme = dark`, `reload`) are accepted for compatibility with the CLI but ignored
+> here. The `extra-keys` property no longer exists. The matching CLI (v0.5.1+) writes this file:
 > `tekl reload ~/.termux/termux.tekl`.
 
 Note that this repository is for the app itself (the user interface and the terminal emulation). For the packages installable inside the app, see [termux/termux-packages](https://github.com/termux/termux-packages).
