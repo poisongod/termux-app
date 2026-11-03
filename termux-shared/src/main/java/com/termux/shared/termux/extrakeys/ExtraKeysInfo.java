@@ -20,9 +20,9 @@ import java.util.List;
  * A {@link Class} that defines the info needed by {@link ExtraKeysView} to display the extra key
  * views.
  *
- * <p>The {@code propertiesInfo} passed to the constructors of this class must be tekl source.
- * Semicolons separate rows; newlines and {@code #} comments are ignored. Each element of a row is
- * one key:</p>
+ * <p>The tekl source passed to the constructors of this class is parsed directly into keys;
+ * there is no JSON intermediate. Semicolons separate rows; newlines and {@code #} comments are
+ * ignored. Each element of a row is one key:</p>
  *
  * <pre>
  * KEY                 plain key                 ESC

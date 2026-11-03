@@ -290,8 +290,6 @@ public abstract class TermuxSharedProperties {
                 return (String) getBackKeyBehaviourInternalPropertyValueFromValue(value);
             case TermuxPropertyConstants.KEY_DEFAULT_WORKING_DIRECTORY:
                 return (String) getDefaultWorkingDirectoryInternalPropertyValueFromValue(value);
-            case TermuxPropertyConstants.KEY_EXTRA_KEYS:
-                return (String) getExtraKeysInternalPropertyValueFromValue(value);
             case TermuxPropertyConstants.KEY_EXTRA_KEYS_STYLE:
                 return (String) getExtraKeysStyleInternalPropertyValueFromValue(value);
             case TermuxPropertyConstants.KEY_NIGHT_MODE:
@@ -516,16 +514,6 @@ public abstract class TermuxSharedProperties {
         } else {
             return path;
         }
-    }
-
-    /**
-     * Returns the value itself if it is not {@code null}, otherwise returns {@link TermuxPropertyConstants#DEFAULT_IVALUE_EXTRA_KEYS}.
-     *
-     * @param value The {@link String} value to convert.
-     * @return Returns the internal value for value.
-     */
-    public static String getExtraKeysInternalPropertyValueFromValue(String value) {
-        return SharedProperties.getDefaultIfNullOrEmpty(value, TermuxPropertyConstants.DEFAULT_IVALUE_EXTRA_KEYS);
     }
 
     /**

@@ -19,7 +19,7 @@ import java.util.Set;
  *
  * <p>Comments start with {@code #} and run to the end of the line. {@code ;} terminates a row;
  * newlines are only formatting. Global property assignments ({@code height = 2}, {@code theme = ...})
- * are rejected here: the {@code extra-keys} property only carries the key matrix.</p>
+ * are rejected here: the layout file only carries the key matrix.</p>
  */
 public final class TeklParser {
 

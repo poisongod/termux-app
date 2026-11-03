@@ -9,18 +9,22 @@
 
 [Termux](https://termux.dev) is an Android terminal application and Linux environment.
 
-> **Fork note — `extra-keys` uses tekl, not JSON.**
+> **Fork note — the extra keys layout is a tekl file.**
 > This fork replaces the JSON syntax of the `extra-keys` property with
-> [tekl](https://github.com/poisongod/termux-extrakey-lang), a small layout DSL:
+> [tekl](https://github.com/poisongod/termux-extrakey-lang), a small layout DSL, and reads it from
+> `~/.termux/termux.tekl` instead of `termux.properties`:
 >
-> ```properties
-> extra-keys = ESC.DRAWER "`"."~" "["."{" "]"."}" APOSTROPHE.QUOTE UP.HOME "="."+" KEYBOARD; TAB."^" CTRL ALT BACKSLASH."|" LEFT."<" DOWN.END RIGHT.">" ENTER.PASTE
+> ```tekl
+> ESC.DRAWER "`"."~" "["."{" "]"."}" APOSTROPHE.QUOTE UP.HOME "="."+" KEYBOARD;
+> TAB."^" CTRL ALT BACKSLASH."|" LEFT."<" DOWN.END RIGHT.">" ENTER.PASTE
 > ```
 >
 > `;` separates rows, `KEY.POPUP` adds a swipe-up key, `MODIFIER(KEY)` is a macro and
-> `KEY:Label` renames the button. Existing JSON configs must be rewritten; on a parse error
-> the app shows the line/column and falls back to the built-in layout. The matching CLI
-> (v0.4.0+) writes this syntax: `tekl reload ~/.termux/termux.tekl`.
+> `KEY:Label` renames the button. The file is plain multi-line tekl: `#` comments and newlines are
+> allowed. If it is missing the built-in layout is used; an empty file hides the toolbar. On a parse
+> error the app shows the line/column and falls back to the built-in layout. The `extra-keys`
+> property no longer exists. The matching CLI (v0.5.0+) writes this file:
+> `tekl reload ~/.termux/termux.tekl`.
 
 Note that this repository is for the app itself (the user interface and the terminal emulation). For the packages installable inside the app, see [termux/termux-packages](https://github.com/termux/termux-packages).
 

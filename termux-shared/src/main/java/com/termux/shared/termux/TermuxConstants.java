@@ -675,6 +675,9 @@ public final class TermuxConstants {
     /** Termux app data home directory */
     public static final File TERMUX_DATA_HOME_DIR = new File(TERMUX_DATA_HOME_DIR_PATH);
 
+    /** Termux app extra keys layout file path (tekl source) */
+    public static final String TERMUX_EXTRA_KEYS_FILE_PATH = TERMUX_DATA_HOME_DIR_PATH + "/termux.tekl"; // Default: "/data/data/com.termux/files/home/.termux/termux.tekl"
+
 
     /** Termux app storage home directory path */
     public static final String TERMUX_STORAGE_HOME_DIR_PATH = TERMUX_HOME_DIR_PATH + "/storage"; // Default: "/data/data/com.termux/files/home/storage"

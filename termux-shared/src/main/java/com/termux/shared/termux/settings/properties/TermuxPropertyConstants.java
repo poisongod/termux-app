@@ -324,20 +324,12 @@ public final class TermuxPropertyConstants {
 
 
     /**
-     * Defines the key for extra keys.
+     * Defines the key for extra keys style.
      *
-     * <p>The value is tekl source, not JSON. Semicolons separate rows; {@code #} starts a comment.
-     * Example single row: {@code ESC TAB CTRL ALT "-"."|" DOWN UP}.</p>
+     * <p>The extra keys layout itself is no longer a property; it is read from
+     * {@code ~/.termux/termux.tekl} (tekl source), see
+     * {@link com.termux.shared.termux.TermuxConstants#TERMUX_EXTRA_KEYS_FILE_PATH}.</p>
      */
-    public static final String KEY_EXTRA_KEYS =  "extra-keys"; // Default: "extra-keys"
-    /**
-     * Default layout: physical-keyboard inspired, inverted-T arrows on the right,
-     * ESC in the top-left corner.
-     */
-    public static final String DEFAULT_IVALUE_EXTRA_KEYS =
-        com.termux.shared.termux.extrakeys.tekl.TeklDefaults.DEFAULT_LAYOUT;
-
-    /** Defines the key for extra keys style */
     public static final String KEY_EXTRA_KEYS_STYLE =  "extra-keys-style"; // Default: "extra-keys-style"
     public static final String DEFAULT_IVALUE_EXTRA_KEYS_STYLE = "default";
 
@@ -435,7 +427,6 @@ public final class TermuxPropertyConstants {
         /* String */
         KEY_BACK_KEY_BEHAVIOUR,
         KEY_DEFAULT_WORKING_DIRECTORY,
-        KEY_EXTRA_KEYS,
         KEY_EXTRA_KEYS_STYLE,
         KEY_NIGHT_MODE,
         KEY_SOFT_KEYBOARD_TOGGLE_BEHAVIOUR,
