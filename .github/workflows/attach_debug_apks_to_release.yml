@@ -38,9 +38,8 @@ jobs:
         run: |
           exit_on_error() {
               echo "$1"
-              echo "Deleting '$RELEASE_VERSION_NAME' release and '$RELEASE_TAG' tag"
-              hub release delete "$RELEASE_VERSION_NAME"
-              git push --delete origin "$RELEASE_TAG"
+              # Keep the release and tag: a transient build/upload failure should not delete a
+              # published release (the previous behaviour did, losing the tag as well).
               exit 1
           }
 
